@@ -15,15 +15,17 @@ const CategoryMealsScreen = props => {
 				complexity={itemData.item.complexity}
 				affordability={itemData.item.affordability}
 				image={itemData.item.imageUrl}
-				onSelectMeal={() => {}}
+				onSelectMeal={() => props.navigation.navigate({
+					routeName: "MealDetail",
+					params: {
+						mealId: itemData.item.id
+					}
+				})}
 			/>
 		);
 	};
-
 	const catId = props.navigation.getParam('categoryId');
-	
 	const displayedMeals = MEALS.filter(meal => meal.categoryIds.indexOf(catId) >= 0);
-
 	return (
 		<View style={styles.screen}>
 			<FlatList
