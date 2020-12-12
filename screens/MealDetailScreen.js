@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { Header } from 'react-native/Libraries/NewAppScreen';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { MEALS } from '../data/dummy-data';
