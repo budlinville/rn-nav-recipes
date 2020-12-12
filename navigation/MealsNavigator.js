@@ -12,6 +12,13 @@ import MealDetailScreen from '../screens/MealDetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen'
 import Colors from '../constants/Colors';
 
+const defaultStackNavOptions = {
+	headerStyle: {
+		backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+	},
+	headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
+};
+
 const MealsNavigator = createStackNavigator({
 	Categories: CategoriesScreen,
 	CategoryMeals: {
@@ -21,14 +28,16 @@ const MealsNavigator = createStackNavigator({
 }, {
 	// initialRouteName: 'Categories',	// uses first key-value pair by default
 	mode: 'modal',
-	defaultNavigationOptions: {
-		headerStyle: {
-			backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
-		},
-		headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
-	}
+	defaultNavigationOptions: defaultStackNavOptions
 	// navigationOptions: {} // Use this line to configure a nested navigator that is being used as a screen
 	// i.e. use it for setting tab icons in a nestedm navigator
+});
+
+const FavNavigator = createStackNavigator({
+	Favorites: FavoritesScreen,
+	MealDetail: MealDetailScreen
+}, {
+	defaultNavigationOptions: defaultStackNavOptions
 });
 
 const tabScreenConfig = {
@@ -46,7 +55,7 @@ const tabScreenConfig = {
 		}
 	},
 	Favorites: {
-		screen: FavoritesScreen,
+		screen: FavNavigator,
 		navigationOptions: {
 			// tabBarLabel: 'Favorites!',
 			tabBarIcon: tabInfo => (
